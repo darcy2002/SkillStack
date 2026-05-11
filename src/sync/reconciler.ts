@@ -53,7 +53,6 @@ function copyDirRecursive(src: string, dest: string): void {
 }
 
 function writeSkillToAgent(
-  skillName: string,
   sourceFile: string,
   targetAgent: string
 ): { ok: boolean; reason?: string } {
@@ -127,7 +126,7 @@ export async function reconcile(
     for (const agent of agents) {
       const st = entry.statuses.get(agent);
       if (st === 'missing' || st === 'outdated') {
-        const res = writeSkillToAgent(entry.skillName, source.path, agent);
+        const res = writeSkillToAgent(source.path, agent);
         if (res.ok) {
           status.ok(`${entry.skillName} → ${agent}`);
         } else {

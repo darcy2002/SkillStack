@@ -1,4 +1,4 @@
-import { banner, heading, status, agentBadge, createTable, dim } from '../utils/ui.js';
+import { banner, heading, status, agentBadge, dim } from '../utils/ui.js';
 import { detectAgents } from '../agents/detector.js';
 import { readdirSync, existsSync } from 'fs';
 import { join } from 'path';

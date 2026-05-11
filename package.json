@@ -27,8 +27,16 @@
     "benchmark",
     "sync"
   ],
-  "author": "",
+  "author": "devanshi garg <devanshigarg2002@gmail.com>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/devanshigarg2002/skillstack.git"
+  },
+  "homepage": "https://github.com/devanshigarg2002/skillstack#readme",
+  "bugs": {
+    "url": "https://github.com/devanshigarg2002/skillstack/issues"
+  },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.30.0",
     "chalk": "^5.4.0",
@@ -52,6 +60,7 @@
     "bin/",
     "dist/",
     "templates/",
-    "README.md"
+    "README.md",
+    "LICENSE"
   ]
 }
