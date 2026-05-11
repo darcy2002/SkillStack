@@ -1,0 +1,57 @@
+{
+  "name": "skillstack",
+  "version": "0.1.0",
+  "description": "Curated, tested, shareable agent skill bundles. Stacks + Bench + Sync.",
+  "type": "module",
+  "bin": {
+    "skillstack": "./bin/skillstack.js"
+  },
+  "main": "./dist/cli.js",
+  "scripts": {
+    "build": "esbuild src/cli.ts --bundle --platform=node --target=node20 --format=esm --outdir=dist --packages=external",
+    "dev": "tsx src/cli.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "agent-skills",
+    "ai",
+    "cli",
+    "claude",
+    "codex",
+    "cursor",
+    "copilot",
+    "skills",
+    "benchmark",
+    "sync"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.30.0",
+    "chalk": "^5.4.0",
+    "cli-table3": "^0.6.5",
+    "commander": "^12.1.0",
+    "enquirer": "^2.4.1",
+    "gray-matter": "^4.0.3",
+    "ora": "^8.1.0",
+    "yaml": "^2.6.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.24.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0",
+    "vitest": "^2.1.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "files": [
+    "bin/",
+    "dist/",
+    "templates/",
+    "README.md"
+  ]
+}

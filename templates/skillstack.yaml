@@ -1,0 +1,25 @@
+name: my-stack
+author: your-github-username
+version: "1.0.0"
+description: A curated set of agent skills for [your use case]
+
+# Target agents (omit to install on all detected agents)
+agents:
+  - claude-code
+  - cursor
+  - codex
+
+# Skills in this stack
+skills:
+  - source: vercel-labs/agent-skills
+    skill: frontend-design
+  - source: vercel-labs/agent-skills
+    skill: react-best-practices
+  # Add more skills:
+  # - source: owner/repo
+  #   skill: skill-name
+
+# Optional: bench configuration
+# bench:
+#   tasks_per_skill: 3
+#   model: claude-sonnet-4-20250514
