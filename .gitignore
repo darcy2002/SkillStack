@@ -5,3 +5,4 @@ dist/
 .env
 bench-report.json
 bench-report.md
+LEARN.md
