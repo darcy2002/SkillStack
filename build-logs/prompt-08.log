@@ -1,0 +1,11 @@
+All pre-launch checks passed:
+
+- ✅ `npm install` — clean (5 moderate audit warnings, no blockers)
+- ✅ `npx tsc --noEmit` — zero errors
+- ✅ `npm run build` — `dist/cli.js` 51.4kb
+- ✅ `npm test` — 18/18 tests pass across 5 files
+- ✅ `--help`, `list`, `bench` all behave as expected (bench shows API key error)
+- ✅ `package.json` updated: author "Deepak", repo/homepage/bugs URLs point to `github.com/deepak/skillstack`
+- ✅ `.gitignore` covers `dist/`, `node_modules/`, `.env`
+- ✅ `files` array publishes only `bin/`, `dist/`, `templates/`, `README.md`, `LICENSE` (17.9 kB tarball, 6 files)
+- ✅ Committed as `2a99f3b`
