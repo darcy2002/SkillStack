@@ -1,0 +1,1 @@
+Committed as `24ca25c`. The runner does dual execution (with/without skill) tracking tokens via `response.usage`, and the grader randomizes A/B assignment then un-maps to with/without scores.
