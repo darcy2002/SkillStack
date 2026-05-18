@@ -1,0 +1,6 @@
+Both `src/bench/scanner.ts` and `src/bench/task-generator.ts` already exist with implementations matching the spec exactly, and are already committed (commit `b5e08b9`). There's nothing to add or commit — the modules are in place:
+
+- `scanner.ts` exports `scanAllSkills(cwd?)` and `scanSkillByName(name, cwd?)`, walking each detected agent's `skillDirs`, parsing every `SKILL.md`, and dedup'ing by name.
+- `task-generator.ts` exports `GeneratedTasks` and `generateTasks(skill, count, model)`, using the specified system/user prompts with one retry on JSON parse failure.
+
+No commit needed (no changes to stage). The untracked `build-logs/`, `prompts/`, `run-build.sh`, and `src/utils/claude-client.ts` are unrelated to this task — let me know if you want them included.
