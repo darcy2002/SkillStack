@@ -1,0 +1,8 @@
+Final phase is complete and verified:
+
+- **Tests**: all 5 files present (`parser`, `detector`, `skillmd`, `conflicts`, `resolver`) — 18/18 passing
+- **Typecheck**: `npx tsc --noEmit` exits clean
+- **README.md**: hook, why/what, quick start, command table, example yaml, bench scorecard, sync diff, pipeline diagram, cost section
+- **LICENSE**: MIT present
+- **bin/skillstack.js**: entry point in place
+- Committed as `dcf92d4`
