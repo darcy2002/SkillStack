@@ -1,0 +1,8 @@
+The sync engine is complete and committed. All four components match the spec:
+
+- **scanner.ts** — `buildMatrix()` detects agents, walks skill dirs, parses every SKILL.md, returns matrix + agent/skill lists
+- **differ.ts** — `computeDiff()` tallies hashes, tie-breaks by authority order (claude-code > codex > cursor > ...), assigns synced/outdated/missing/only-here, sorts by issue count
+- **reconciler.ts** — `showDiffTable()` renders the colored glyph table; `reconcile()` filters broken entries, prompts via enquirer, copies whole skill folders for `skillmd` agents or converts via `convertForAgent()` for `mdc`/`md-rule`
+- **commands/sync.ts** — wired to call buildMatrix → computeDiff → showDiffTable → reconcile (skipping reconcile on `--dryRun`)
+
+Type-check passes. Note the commit only registered `build-logs/prompt-05.log` as new — the four source files were already in place from prior work.
