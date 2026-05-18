@@ -27,15 +27,15 @@
     "benchmark",
     "sync"
   ],
-  "author": "devanshi garg <devanshigarg2002@gmail.com>",
+  "author": "Deepak",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/devanshigarg2002/skillstack.git"
+    "url": "https://github.com/deepak/skillstack.git"
   },
-  "homepage": "https://github.com/devanshigarg2002/skillstack#readme",
+  "homepage": "https://github.com/deepak/skillstack#readme",
   "bugs": {
-    "url": "https://github.com/devanshigarg2002/skillstack/issues"
+    "url": "https://github.com/deepak/skillstack/issues"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.30.0",
