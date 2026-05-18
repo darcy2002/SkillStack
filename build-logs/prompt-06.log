@@ -1,0 +1,7 @@
+All three commands (`create`, `publish`, `score`) were already fully implemented to spec — none were stubs:
+
+- **create.ts**: enquirer prompts for name/author/description, `detectAgents()` multi-select, `scanAllSkills()` multi-select, GitHub source loop, writes `skillstack.yaml`, prints next-steps.
+- **publish.ts**: validates manifest, `git init` if needed, prompts for GitHub user + repo creation ack, adds remote, stages yaml/lock/README/LICENSE, commits, pushes, prints install command.
+- **score.ts**: `scanSkillByName` with available-skills fallback, runs `generateTasks` → `runAllTasks` → `gradeAllResults`, renders single-row scorecard with tokens + cost.
+
+Type check clean. Commit `925bd17` created (only `build-logs/prompt-06.log` was untracked).
