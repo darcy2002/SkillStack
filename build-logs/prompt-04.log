@@ -1,0 +1,7 @@
+All three modules were already implemented matching the spec:
+
+- **src/bench/conflicts.ts** — `detectConflicts()` computes keyword overlap percentages across all skill pairs, filters by threshold, sorts descending.
+- **src/bench/reporter.ts** — `renderTerminal()` (table + conflicts + footer), `writeJsonReport()`, `writeMarkdownReport()` with emoji status indicators and shareable layout. Also exports `statusFromScore()` helper.
+- **src/commands/bench.ts** — full pipeline: scan → generate → run → grade per skill, then conflicts, then render + optional JSON/MD writes, with ora spinners using the requested labels.
+
+Committed as `ab4a095`.
