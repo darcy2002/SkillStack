@@ -1,133 +1,178 @@
+<div align="center">
+
 # ⚡ skillstack
 
-> Curated, tested, shareable agent skill bundles for the open agent-skills ecosystem.
+**The quality layer for AI agent skills.**
 
-![demo](./assets/demo.gif)
+Test, bundle, and sync skills across every coding agent.
+
+[![npm version](https://img.shields.io/npm/v/skillstack.svg)](https://www.npmjs.com/package/skillstack)
+[![license](https://img.shields.io/npm/l/skillstack.svg)](./LICENSE)
+[![docs](https://img.shields.io/badge/docs-skillstack.dev-7C3AED)](https://docs.skillstack.dev)
+
+```bash
+npx skillstack bench
+```
+
+</div>
+
+---
+
+## What is this?
+
+**skillstack** is a CLI that adds three layers on top of the [open agent skills ecosystem](https://agentskills.io):
+
+- 📦 **Stacks** — Curated, shareable bundles of skills. Install with one command.
+- ⚡ **Bench** — Automated quality scoring. Find out which skills actually help and which are broken.
+- 🔀 **Sync** — Cross-agent audit. Find mismatches across Claude Code, Cursor, Codex, and more.
+
+It works with every agent that supports the SKILL.md standard — Claude Code, Cursor, Codex, GitHub Copilot, Gemini CLI, Windsurf, Kiro, OpenCode, Roo, Amp, and 50+ others.
 
 ## Why?
 
-Agent skills are exploding — Vercel's `npx skills` already supports 50+ agents and hundreds of community skills. But three problems remain:
+Thousands of agent skills exist. Three problems:
 
-- **Skill sprawl.** No one has time to hand-pick the right 10 skills for a Next.js project, or a Python backend, or a DevOps workflow.
-- **No quality signal.** Some skills are gold. Some make your agent worse. There's no way to tell which is which before you install.
-- **Agent fragmentation.** You install a skill in Cursor; your teammate uses Claude Code; another uses Codex. The same skill, three formats, no way to keep them in sync.
-
-`skillstack` fixes all three.
-
-## What?
-
-Three layers on top of `npx skills`:
-
-- **Stacks** — curated bundles described by a `skillstack.yaml` in any GitHub repo. One command installs the whole set.
-- **Bench** — actually score installed skills. We auto-generate test prompts, run each with-and-without the skill, blind-grade the outputs with Claude, and produce a scorecard.
-- **Sync** — cross-agent audit. See which skills are installed where, find drift, reconcile.
-
-## Quick start
-
-```bash
-# Install a community stack
-npx skillstack install vercel/skillstack-nextjs
-
-# Benchmark everything you have installed
-export ANTHROPIC_API_KEY=...
-npx skillstack bench
-
-# Audit & sync across all your agents
-npx skillstack sync
-```
-
-## Commands
-
-| Command | What it does |
+| Problem | Solution |
 |---|---|
-| `skillstack install [stack]` | Install a stack from GitHub or a local `skillstack.yaml` |
-| `skillstack list [--agents]` | List installed stacks and skills |
-| `skillstack bench [--json] [--md]` | Score every installed skill |
-| `skillstack score <skill>` | Quick benchmark for a single skill |
-| `skillstack sync [--dry-run]` | Audit + reconcile skills across agents |
-| `skillstack create` | Interactive stack builder |
-| `skillstack publish` | Push your stack to GitHub |
-
-## Example `skillstack.yaml`
-
-```yaml
-name: nextjs-pro
-author: devanshi
-version: 0.1.0
-description: A curated stack for Next.js teams shipping production frontends.
-agents: [claude-code, cursor]
-skills:
-  - source: vercel/skills
-    skill: frontend-design
-  - source: vercel/skills
-    skill: tailwind-best-practices
-  - source: anthropic/skills
-    skill: testing-strategy
-bench:
-  tasks_per_skill: 3
-  model: claude-sonnet-4-6
-```
-
-## Example bench output
-
-```
-┌────────────────────────┬─────────┬──────────┬──────────┐
-│ Skill                  │ Score   │ Δ vs raw │ Status   │
-├────────────────────────┼─────────┼──────────┼──────────┤
-│ frontend-design        │ 92/100  │ +34      │  Strong  │
-│ tailwind-best-practices│ 81/100  │ +18      │  Strong  │
-│ testing-strategy       │ 64/100  │ +7       │   Weak   │
-│ obsolete-css-grid      │ 28/100  │ -12      │  Broken  │
-└────────────────────────┴─────────┴──────────┴──────────┘
-
-  ⚠ Conflicts detected:
-    → frontend-design & tailwind-best-practices both trigger on: css, layout, design  (52% overlap)
-
-  ──────────────────────────────────────────────────────────
-  Model: claude-sonnet-4-6   Tokens: 18,420   Est. cost: $0.11
-```
-
-## Example sync output
-
-```
-┌────────────────────┬─────────────┬────────┬────────┬──────────┐
-│ Skill              │ claude-code │ cursor │ codex  │ Source   │
-├────────────────────┼─────────────┼────────┼────────┼──────────┤
-│ frontend-design    │      ✔      │   ⚠    │   ✖    │ claude   │
-│ debug              │      ✔      │   ✔    │   ✔    │ claude   │
-│ python-format      │      ✖      │   ✔    │   ✖    │ cursor   │
-└────────────────────┴─────────────┴────────┴────────┴──────────┘
-  ✔ synced   ⚠ outdated   ✖ missing   ● only-here
-```
-
-## How bench works
-
-```
-1. Scan      — read every SKILL.md from every detected agent
-2. Generate  — Claude generates 3 realistic test prompts per skill
-3. Run       — each prompt runs twice: with the skill in the system prompt, without
-4. Grade     — Claude judges both outputs blind (A/B randomized) on 0–100
-5. Report    — terminal scorecard + bench-report.json + bench-report.md
-```
-
-## Cost
-
-Benchmarking is ~$0.02 per skill (3 tasks × 2 runs × 1 grade ≈ 6 Claude calls). Ten skills runs you about **$0.15**.
+| Installing 8 skills takes 8 commands | `skillstack install user/stack` |
+| No way to know if a skill actually works | `skillstack bench` |
+| Skills installed in Claude Code but not Cursor | `skillstack sync` |
 
 ## Install
 
 ```bash
 npm install -g skillstack
-# or just use npx
+```
+
+Or run without installing:
+
+```bash
 npx skillstack <command>
 ```
 
+## Quick tour
+
+### See what you have
+
+```bash
+skillstack list --agents
+```
+
+```
+Detected agents
+  [claude-code]  5 skill(s)
+    • frontend-design — Create polished UI components
+    • api-testing — Write tests using Jest and Supertest
+    ...
+```
+
+### Install a curated stack
+
+```bash
+skillstack install darcy2002/nextjs-starter
+```
+
+Fetches `skillstack.yaml` from GitHub and installs every skill in the bundle.
+
+### Benchmark your skills
+
+```bash
+export ANTHROPIC_API_KEY="sk-ant-..."
+skillstack bench
+```
+
+```
+Skill                Score    Δ vs raw   Status
+─────────────────────────────────────────────────
+frontend-design      92/100   +41        ✅ Strong
+react-best-practices 78/100   +22        ✅ Good
+api-testing          54/100   +8         ⚠️  Weak
+old-webpack-config   31/100   -2         ❌ Broken
+─────────────────────────────────────────────────
+Tokens: 48,200  ·  Est. cost: $0.14
+```
+
+The delta (`Δ vs raw`) measures how much each skill improves output over the raw model. Negative delta = remove the skill.
+
+### Sync across agents
+
+```bash
+skillstack sync --dry-run
+```
+
+```
+┌──────────────────┬────────┬────────┬───────┐
+│ Skill            │ Claude │ Cursor │ Codex │
+├──────────────────┼────────┼────────┼───────┤
+│ frontend-design  │ ✔      │ ✔      │ ✖     │
+│ api-testing      │ ✔      │ ⚠      │ ✔     │
+└──────────────────┴────────┴────────┴───────┘
+  ✔ synced   ⚠ outdated   ✖ missing
+```
+
+### Build and share your own stack
+
+```bash
+skillstack create     # interactive wizard
+skillstack publish    # push to GitHub
+```
+
+Anyone can then install with `skillstack install your-username/your-stack`.
+
+## All commands
+
+| Command | What it does |
+|---|---|
+| `skillstack install <stack>` | Install a stack from GitHub |
+| `skillstack bench` | Score installed skills 0-100 |
+| `skillstack sync` | Audit and reconcile across agents |
+| `skillstack create` | Interactive stack builder |
+| `skillstack publish` | Push your stack to GitHub |
+| `skillstack list` | Show detected agents + skills |
+| `skillstack score <skill>` | Quick bench of one skill |
+
+See the [full documentation](https://docs.skillstack.dev) for every flag and option.
+
+## How bench works
+
+```
+1. Scan installed SKILL.md files
+2. Use Claude API to generate test prompts per skill
+3. Run each prompt twice — with skill, without skill
+4. Send both outputs to Claude as a blind judge
+5. Score 0-100 and compute delta
+```
+
+Cost: roughly **$0.02 per skill**. Benchmarking 10 skills ≈ $0.20.
+
+See [How Bench Works](https://docs.skillstack.dev/bench/how-it-works) for the full methodology.
+
+## Built on `npx skills`
+
+skillstack doesn't reimplement skill installation — we shell out to [`npx skills`](https://www.npmjs.com/package/skills) by Vercel for that. We focus on the three layers nobody else has built: **quality scoring, bundling, and cross-agent sync.**
+
+## Requirements
+
+- Node.js 20+
+- At least one coding agent with skill support
+- Anthropic API key (only for `bench` and `score` commands)
+
+## Documentation
+
+Full docs at **[docs.skillstack.dev](https://docs.skillstack.dev)**:
+
+- [Quickstart](https://docs.skillstack.dev/quickstart)
+- [Command reference](https://docs.skillstack.dev/commands/install)
+- [skillstack.yaml schema](https://docs.skillstack.dev/stacks/yaml-reference)
+- [How bench works](https://docs.skillstack.dev/bench/how-it-works)
+- [CI/CD integration](https://docs.skillstack.dev/guides/ci-integration)
+
 ## Contributing
 
-Stacks are just GitHub repos with a `skillstack.yaml`. Build one, publish it with `skillstack publish`, share the install command — that's the entire ecosystem.
+Found a bug? [Open an issue](https://github.com/darcy2002/SkillStack/issues).
 
-PRs welcome. See [PROMPTS.md](./PROMPTS.md) for the build phases.
+Want to contribute? PRs welcome — see [CONTRIBUTING.md](./CONTRIBUTING.md).
 
 ## License
 
-MIT
+MIT © [darcy2002](https://github.com/darcy2002)
