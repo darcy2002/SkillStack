@@ -14,14 +14,14 @@ export interface LockFile {
   entries: LockEntry[];
 }
 
-const LOCK_FILE_NAME = 'skillstack-lock.json';
+const LOCK_FILE_NAME = 'skillrank-lock.json';
 
 function lockPath(dir?: string): string {
   return join(dir ?? process.cwd(), LOCK_FILE_NAME);
 }
 
 /**
- * Read and parse skillstack-lock.json. Returns null if not found.
+ * Read and parse skillrank-lock.json. Returns null if not found.
  */
 export function readLock(dir?: string): LockFile | null {
   const path = lockPath(dir);
@@ -35,7 +35,7 @@ export function readLock(dir?: string): LockFile | null {
 }
 
 /**
- * Write skillstack-lock.json to disk.
+ * Write skillrank-lock.json to disk.
  */
 export function writeLock(lock: LockFile, dir?: string): void {
   writeFileSync(lockPath(dir), JSON.stringify(lock, null, 2) + '\n', 'utf-8');

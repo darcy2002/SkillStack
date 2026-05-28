@@ -1,6 +1,6 @@
 name: test-stack
 author: darcy2002
-description: A test stack to verify skillstack works
+description: A test stack to verify skillrank works
 agents:
   - codex
 skills:

@@ -32,7 +32,7 @@ This module converts a parsed StackManifest into executable npx commands.
 
 Lock file management for reproducible stack installs.
 
-- Lock file path: `./skillstack-lock.json` (project-local, committed to git)
+- Lock file path: `./skillrank-lock.json` (project-local, committed to git)
 - Interface `LockEntry`: { source: string, skill: string, installedAt: string, contentHash: string }
 - Interface `LockFile`: { version: 1, stackName: string, entries: LockEntry[] }
 - Export function `readLock(dir?: string): LockFile | null` — read and parse, return null if not found
@@ -43,9 +43,9 @@ Lock file management for reproducible stack installs.
 
 - After each successful skill install, call addToLock to track it
 - At the end, call writeLock to save the lock file
-- If `skillstack install` is called with NO arguments and NO --file flag:
-  - Check for skillstack-lock.json first, if found restore from lock
-  - Then check for skillstack.yaml, if found install from it
+- If `skillrank install` is called with NO arguments and NO --file flag:
+  - Check for skillrank-lock.json first, if found restore from lock
+  - Then check for skillrank.yaml, if found install from it
   - Otherwise show error
 
 After completing, run: git add -A && git commit -m "feat: complete stack engine (resolver + lock + install)"
@@ -241,7 +241,7 @@ Renders the terminal scorecard and writes bench-report.json + bench-report.md.
 - Export function `writeMarkdownReport(report: BenchReport, path?: string): void`
   - Write bench-report.md — designed to look great as a screenshot
   - Use a markdown table with emoji status indicators
-  - Include a header: "# ⚡ skillstack bench report"
+  - Include a header: "# ⚡ skillrank bench report"
   - This is the viral artifact — make it look clean and shareable
 
 ### 3. Wire it all up in src/commands/bench.ts
@@ -372,23 +372,23 @@ Replace the stub:
   4. Call detectAgents() — show detected agents, let user pick which to target
   5. Call scanAllSkills() from bench/scanner.ts — show installed skills, let user multi-select
   6. Ask if they want to add skills from GitHub repos (allow entering owner/repo + skill name)
-  7. Write skillstack.yaml to the --output path
-  8. Print success message with next steps: "Run `skillstack install` to install this stack"
+  7. Write skillrank.yaml to the --output path
+  8. Print success message with next steps: "Run `skillrank install` to install this stack"
 
 ### 2. src/commands/publish.ts — Push to GitHub
 
 Replace the stub:
-- Check that skillstack.yaml exists in cwd
+- Check that skillrank.yaml exists in cwd
 - Parse and validate it
 - Check if git repo exists, if not: git init
 - Check if remote exists, if not:
   - Prompt for GitHub username
   - Tell user to create the repo on GitHub: "Create a repo named '{stack-name}' on GitHub, then press Enter"
   - Add remote: git remote add origin https://github.com/{user}/{stack-name}.git
-- git add skillstack.yaml skillstack-lock.json (if exists) README.md (if exists)
+- git add skillrank.yaml skillrank-lock.json (if exists) README.md (if exists)
 - git commit -m "feat: publish {stack-name} stack"
 - git push -u origin main
-- Print: "Published! Others can install with: npx skillstack install {user}/{stack-name}"
+- Print: "Published! Others can install with: npx skillrank install {user}/{stack-name}"
 
 ### 3. src/commands/score.ts — Quick single-skill bench
 
@@ -417,7 +417,7 @@ Read CLAUDE.md for project context. Final phase — testing, documentation, and 
 Create these test files:
 
 - test/parser.test.ts
-  - Test valid skillstack.yaml parsing
+  - Test valid skillrank.yaml parsing
   - Test validation errors (missing name, empty skills, etc.)
   - Test edge cases (no agents field, no bench field)
 
@@ -448,9 +448,9 @@ Write a compelling README with:
 - Demo GIF placeholder: `![demo](./assets/demo.gif)` 
 - "Why?" section — the problem (skill sprawl, no quality signals, agent fragmentation)
 - "What?" section — stacks + bench + sync in 3 bullets
-- Quick start: npm install, npx skillstack install, npx skillstack bench
+- Quick start: npm install, npx skillrank install, npx skillrank bench
 - Full command reference with examples for each command
-- Example skillstack.yaml
+- Example skillrank.yaml
 - Example bench output (the terminal scorecard as a code block)
 - Example sync diff output
 - "How bench works" section (the 5-step pipeline diagram as text)
@@ -463,8 +463,8 @@ Make the README optimized for GitHub stars — strong hook, clear value prop, co
 ### 3. Polish
 
 - Ensure all TypeScript compiles: run `npx tsc --noEmit` and fix any errors
-- Make sure bin/skillstack.js works as entry point
-- Add a `skillstack --help` screenshot section to README
+- Make sure bin/skillrank.js works as entry point
+- Add a `skillrank --help` screenshot section to README
 - Add MIT LICENSE file
 
 After completing, run: git add -A && git commit -m "feat: tests, README, and polish — ready for launch"
@@ -483,9 +483,9 @@ Run these checks and fix any issues:
 2. `npx tsc --noEmit` — zero TypeScript errors
 3. `npm run build` — esbuild bundles successfully
 4. `npm test` — all tests pass
-5. `node bin/skillstack.js --help` — shows all commands
-6. `node bin/skillstack.js list` — runs without error (may show 0 agents)
-7. `node bin/skillstack.js bench` — shows API key error (expected)
+5. `node bin/skillrank.js --help` — shows all commands
+6. `node bin/skillrank.js list` — runs without error (may show 0 agents)
+7. `node bin/skillrank.js bench` — shows API key error (expected)
 
 Fix any issues found. Then:
 
@@ -503,13 +503,13 @@ Final commit: git add -A && git commit -m "chore: pre-launch checks passed"
 
 After all 8 prompts are done, do these manually:
 
-1. **Create GitHub repo**: `gh repo create skillstack --public`
+1. **Create GitHub repo**: `gh repo create skillrank --public`
 2. **Push**: `git remote add origin <url> && git push -u origin main`
 3. **npm publish**: `npm publish`
 4. **Create 3-4 starter stacks** as separate repos:
-   - `skillstack-nextjs` — frontend-design, react-best-practices, etc.
-   - `skillstack-python` — python backend skills
-   - `skillstack-devops` — CI/CD, Docker, deployment skills
-5. **Record demo**: Use asciinema or screen record of `skillstack install`, `bench`, `sync`
-6. **Tweet**: The bench scorecard screenshot + "I just ran npx skillstack bench on my 12 installed skills..."
+   - `skillrank-nextjs` — frontend-design, react-best-practices, etc.
+   - `skillrank-python` — python backend skills
+   - `skillrank-devops` — CI/CD, Docker, deployment skills
+5. **Record demo**: Use asciinema or screen record of `skillrank install`, `bench`, `sync`
+6. **Tweet**: The bench scorecard screenshot + "I just ran npx skillrank bench on my 12 installed skills..."
 7. **Post on**: r/ClaudeAI, r/ChatGPTCoding, Hacker News, Dev.to

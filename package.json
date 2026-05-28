@@ -1,10 +1,10 @@
 {
-  "name": "skillstack",
+  "name": "skillrank",
   "version": "0.1.0",
   "description": "Curated, tested, shareable agent skill bundles. Stacks + Bench + Sync.",
   "type": "module",
   "bin": {
-    "skillstack": "./bin/skillstack.js"
+    "skillrank": "./bin/skillrank.js"
   },
   "main": "./dist/cli.js",
   "scripts": {
@@ -31,11 +31,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/deepak/skillstack.git"
+    "url": "https://github.com/deepak/skillrank.git"
   },
-  "homepage": "https://github.com/deepak/skillstack#readme",
+  "homepage": "https://github.com/deepak/skillrank#readme",
   "bugs": {
-    "url": "https://github.com/deepak/skillstack/issues"
+    "url": "https://github.com/deepak/skillrank/issues"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.30.0",

@@ -25,7 +25,7 @@ function gitUserName(): string {
 
 export async function createCommand(options: CreateOptions): Promise<void> {
   banner();
-  heading('Create a new skillstack');
+  heading('Create a new skillrank');
 
   const defaultName = options.name ?? basename(resolve(process.cwd()));
   const defaultAuthor = gitUserName();
@@ -115,5 +115,5 @@ export async function createCommand(options: CreateOptions): Promise<void> {
   writeFileSync(outPath, YAML.stringify(manifest), 'utf-8');
   status.ok(`Wrote ${outPath}`);
   console.log();
-  status.info('Next: run `skillstack install` to install this stack.');
+  status.info('Next: run `skillrank install` to install this stack.');
 }

@@ -52,7 +52,7 @@ export async function generateTasks(
 ): Promise<GeneratedTasks> {
   const apiKey = getApiKey();
   if (!apiKey) {
-    throw new Error('ANTHROPIC_API_KEY not set. Run `skillstack config` or export ANTHROPIC_API_KEY.');
+    throw new Error('ANTHROPIC_API_KEY not set. Run `skillrank config` or export ANTHROPIC_API_KEY.');
   }
   const client = new Anthropic({ apiKey });
 

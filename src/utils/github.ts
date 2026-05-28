@@ -3,7 +3,7 @@ import { existsSync, mkdirSync, readFileSync } from 'fs';
 import { join } from 'path';
 import { homedir } from 'os';
 
-const CACHE_DIR = join(homedir(), '.skillstack', 'cache');
+const CACHE_DIR = join(homedir(), '.skillrank', 'cache');
 
 export interface RepoRef {
   owner: string;
@@ -47,7 +47,7 @@ export function parseGitHubRef(ref: string): RepoRef {
  */
 export async function fetchFromGitHub(
   ref: RepoRef,
-  filePath: string = 'skillstack.yaml'
+  filePath: string = 'skillrank.yaml'
 ): Promise<string> {
   const branch = ref.branch || 'main';
   const url = `https://raw.githubusercontent.com/${ref.owner}/${ref.repo}/${branch}/${filePath}`;

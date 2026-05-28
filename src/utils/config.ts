@@ -2,10 +2,10 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
 import { homedir } from 'os';
 import { join } from 'path';
 
-const CONFIG_DIR = join(homedir(), '.skillstack');
+const CONFIG_DIR = join(homedir(), '.skillrank');
 const CONFIG_FILE = join(CONFIG_DIR, 'config.json');
 
-export interface SkillstackConfig {
+export interface SkillrankConfig {
   /** Anthropic API key for bench commands */
   anthropicApiKey?: string;
   /** Default Claude model for bench */
@@ -19,26 +19,26 @@ export interface SkillstackConfig {
 }
 
 /**
- * Load config from ~/.skillstack/config.json.
+ * Load config from ~/.skillrank/config.json.
  * Returns empty config if file doesn't exist.
  */
-export function loadConfig(): SkillstackConfig {
+export function loadConfig(): SkillrankConfig {
   if (!existsSync(CONFIG_FILE)) {
     return {};
   }
 
   try {
     const raw = readFileSync(CONFIG_FILE, 'utf-8');
-    return JSON.parse(raw) as SkillstackConfig;
+    return JSON.parse(raw) as SkillrankConfig;
   } catch {
     return {};
   }
 }
 
 /**
- * Save config to ~/.skillstack/config.json.
+ * Save config to ~/.skillrank/config.json.
  */
-export function saveConfig(config: SkillstackConfig): void {
+export function saveConfig(config: SkillrankConfig): void {
   if (!existsSync(CONFIG_DIR)) {
     mkdirSync(CONFIG_DIR, { recursive: true });
   }

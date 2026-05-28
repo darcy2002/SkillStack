@@ -3,7 +3,7 @@ import ora from 'ora';
 import Table from 'cli-table3';
 
 // ── Branding ─────────────────────────────────────────────
-export const LOGO = chalk.bold.magenta('⚡ skillstack');
+export const LOGO = chalk.bold.magenta('⚡ skillrank');
 
 export function banner(): void {
   console.log();

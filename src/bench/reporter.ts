@@ -106,7 +106,7 @@ const statusEmoji: Record<SkillStatus, string> = {
 
 export function writeMarkdownReport(report: BenchReport, path: string = 'bench-report.md'): void {
   const lines: string[] = [];
-  lines.push('# ⚡ skillstack bench report');
+  lines.push('# ⚡ skillrank bench report');
   lines.push('');
   lines.push(`_Generated ${report.timestamp} · model \`${report.model}\`_`);
   lines.push('');

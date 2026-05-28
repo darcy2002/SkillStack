@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { parseStackYaml, validateManifest } from '../src/stack/parser.js';
 
 describe('stack parser', () => {
-  it('parses a valid skillstack.yaml', () => {
+  it('parses a valid skillrank.yaml', () => {
     const yaml = `
 name: my-stack
 author: alice

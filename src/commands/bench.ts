@@ -40,7 +40,7 @@ export async function benchCommand(options: BenchOptions): Promise<void> {
     error(
       'Bench requires a Claude API key.\n' +
         '  Set ANTHROPIC_API_KEY env var, or run:\n' +
-        '  skillstack config --api-key <your-key>'
+        '  skillrank config --api-key <your-key>'
     );
     process.exit(1);
   }
@@ -55,7 +55,7 @@ export async function benchCommand(options: BenchOptions): Promise<void> {
   scanSpin.succeed(`Found ${skills.length} installed skill(s).`);
 
   if (skills.length === 0) {
-    status.warn('No skills found. Install some via `skillstack install` first.');
+    status.warn('No skills found. Install some via `skillrank install` first.');
     return;
   }
 

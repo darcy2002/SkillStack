@@ -15,7 +15,7 @@ export interface RunResult {
 function getClient(): Anthropic {
   const apiKey = getApiKey();
   if (!apiKey) {
-    throw new Error('ANTHROPIC_API_KEY not set. Run `skillstack config` or export ANTHROPIC_API_KEY.');
+    throw new Error('ANTHROPIC_API_KEY not set. Run `skillrank config` or export ANTHROPIC_API_KEY.');
   }
   return new Anthropic({ apiKey });
 }

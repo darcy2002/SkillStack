@@ -40,7 +40,7 @@ export function validateManifest(data: unknown): ValidationError[] {
   const d = data as Record<string, unknown>;
 
   if (!d || typeof d !== 'object') {
-    return [{ field: 'root', message: 'skillstack.yaml must be a YAML object' }];
+    return [{ field: 'root', message: 'skillrank.yaml must be a YAML object' }];
   }
 
   // Required string fields
@@ -92,7 +92,7 @@ export function validateManifest(data: unknown): ValidationError[] {
 // ── Parsing ──────────────────────────────────────────────
 
 /**
- * Parse a skillstack.yaml file from disk.
+ * Parse a skillrank.yaml file from disk.
  */
 export function parseStackFile(filePath: string): StackManifest {
   if (!existsSync(filePath)) {
@@ -104,7 +104,7 @@ export function parseStackFile(filePath: string): StackManifest {
 }
 
 /**
- * Parse a skillstack.yaml from string content.
+ * Parse a skillrank.yaml from string content.
  */
 export function parseStackYaml(content: string): StackManifest {
   const data = YAML.parse(content);
@@ -112,7 +112,7 @@ export function parseStackYaml(content: string): StackManifest {
   const errors = validateManifest(data);
   if (errors.length > 0) {
     const messages = errors.map((e) => `  • ${e.field}: ${e.message}`).join('\n');
-    throw new Error(`Invalid skillstack.yaml:\n${messages}`);
+    throw new Error(`Invalid skillrank.yaml:\n${messages}`);
   }
 
   return data as StackManifest;

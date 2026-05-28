@@ -23,14 +23,14 @@ function safeRun(cmd: string): { ok: boolean; out: string } {
 export async function publishCommand(_options: PublishOptions): Promise<void> {
   banner();
 
-  if (!existsSync('./skillstack.yaml')) {
-    error('No skillstack.yaml found in current directory. Run `skillstack create` first.');
+  if (!existsSync('./skillrank.yaml')) {
+    error('No skillrank.yaml found in current directory. Run `skillrank create` first.');
     process.exit(1);
   }
 
   let manifest;
   try {
-    manifest = parseStackFile('./skillstack.yaml');
+    manifest = parseStackFile('./skillrank.yaml');
   } catch (err) {
     error((err as Error).message);
     process.exit(1);
@@ -69,7 +69,7 @@ export async function publishCommand(_options: PublishOptions): Promise<void> {
   }
 
   // Stage files that should be published
-  const candidates = ['skillstack.yaml', 'skillstack-lock.json', 'README.md', 'LICENSE'];
+  const candidates = ['skillrank.yaml', 'skillrank-lock.json', 'README.md', 'LICENSE'];
   const staged: string[] = [];
   for (const f of candidates) {
     if (existsSync(f)) {
@@ -99,7 +99,7 @@ export async function publishCommand(_options: PublishOptions): Promise<void> {
     const [, owner, repo] = match;
     console.log();
     status.ok(`Published! Others can install with:`);
-    console.log(`    npx skillstack install ${owner}/${repo}`);
+    console.log(`    npx skillrank install ${owner}/${repo}`);
   } else {
     status.ok('Published!');
   }

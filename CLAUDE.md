@@ -1,12 +1,12 @@
-# skillstack
+# skillrank
 
 Curated, tested, shareable agent skill bundles for the open agent skills ecosystem.
 
 ## What this is
 
-A CLI tool (`npx skillstack`) that adds three layers on top of the existing `npx skills` ecosystem (by Vercel):
+A CLI tool (`npx skillrank`) that adds three layers on top of the existing `npx skills` ecosystem (by Vercel):
 
-1. **Stacks** — Curated bundles of skills defined in a `skillstack.yaml`. One command installs the whole bundle.
+1. **Stacks** — Curated bundles of skills defined in a `skillrank.yaml`. One command installs the whole bundle.
 2. **Bench** — Automated quality scoring. Runs each skill against synthetic tasks via Claude API (with vs without the skill), grades outputs, reports scores.
 3. **Sync** — Cross-agent audit. Shows what skills are installed where, finds mismatches, reconciles.
 
@@ -19,9 +19,9 @@ Commands: `install`, `bench`, `sync`, `create`, `publish`, `list`, `score`
 Framework: commander.js
 
 ### Layer B: Stack engine (src/stack/)
-- `parser.ts` — Parse + validate skillstack.yaml ✅ DONE
+- `parser.ts` — Parse + validate skillrank.yaml ✅ DONE
 - `resolver.ts` — Convert skill entries into `npx skills add` commands ⚠️ PARTIAL
-- `lock.ts` — Read/write skillstack-lock.json (TODO)
+- `lock.ts` — Read/write skillrank-lock.json (TODO)
 
 ### Layer C: Bench engine (src/bench/) — CORE IP, TODO
 - `scanner.ts` — Read all SKILL.md files from detected agent directories
@@ -44,8 +44,8 @@ Framework: commander.js
 ### Layer F: Utilities (src/utils/)
 - `skillmd.ts` — Shared SKILL.md parser (gray-matter) ✅ DONE
 - `ui.ts` — Chalk formatting, spinners, tables ✅ DONE
-- `config.ts` — ~/.skillstack/config.json (API key, prefs) ✅ DONE
-- `github.ts` — Fetch skillstack.yaml from GitHub repos ✅ DONE
+- `config.ts` — ~/.skillrank/config.json (API key, prefs) ✅ DONE
+- `github.ts` — Fetch skillrank.yaml from GitHub repos ✅ DONE
 
 ## Build order
 
@@ -60,7 +60,7 @@ Phase 6: 🔴 Tests, README, demo GIF, npm publish
 
 - Shell out to `npx skills add/remove` — don't reimplement install logic
 - Claude API key required ONLY for bench — install/sync/create/list work without it
-- Stacks are just GitHub repos with a skillstack.yaml — zero infrastructure
+- Stacks are just GitHub repos with a skillrank.yaml — zero infrastructure
 - Bench uses claude-sonnet-4-6 by default (fast + cheap, ~$0.02/skill)
 - bench-report.md is designed to be screenshot-friendly for viral sharing
 
@@ -68,7 +68,7 @@ Phase 6: 🔴 Tests, README, demo GIF, npm publish
 
 - Node.js + TypeScript (ESM)
 - commander.js (CLI), chalk (colors), ora (spinners), cli-table3 (tables)
-- gray-matter (SKILL.md parsing), yaml (skillstack.yaml parsing)
+- gray-matter (SKILL.md parsing), yaml (skillrank.yaml parsing)
 - @anthropic-ai/sdk (bench engine)
 - enquirer (interactive prompts)
 - esbuild (build), vitest (test)
@@ -88,7 +88,7 @@ Claude Code, Codex, Cursor, GitHub Copilot, Gemini CLI, Windsurf, Kiro, OpenCode
 ## The viral angle
 
 The bench command is the growth engine. The tweet:
-> "I just ran `npx skillstack bench` on my 12 installed skills. 3 broken, 2 conflicting, best one scores 92/100."
+> "I just ran `npx skillrank bench` on my 12 installed skills. 3 broken, 2 conflicting, best one scores 92/100."
 > [screenshot of terminal scorecard]
 
-The skillstack.yaml sharing is the network effect. "Show me your skillstack" becomes a meme.
+The skillrank.yaml sharing is the network effect. "Show me your skillrank" becomes a meme.

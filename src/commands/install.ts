@@ -42,10 +42,10 @@ export async function installCommand(
       process.exit(1);
     }
   } else {
-    // No args: prefer lock file, then skillstack.yaml
+    // No args: prefer lock file, then skillrank.yaml
     const existingLock = readLock();
     if (existingLock && existingLock.entries.length > 0) {
-      status.info(`Restoring "${existingLock.stackName}" from skillstack-lock.json...`);
+      status.info(`Restoring "${existingLock.stackName}" from skillrank-lock.json...`);
       manifest = {
         name: existingLock.stackName,
         author: 'lockfile',
@@ -53,12 +53,12 @@ export async function installCommand(
         skills: existingLock.entries.map((e) => ({ source: e.source, skill: e.skill })),
       };
       restoredFromLock = true;
-    } else if (existsSync('./skillstack.yaml')) {
-      manifest = parseStackFile('./skillstack.yaml');
+    } else if (existsSync('./skillrank.yaml')) {
+      manifest = parseStackFile('./skillrank.yaml');
     } else {
       error(
-        'No stack specified. Use: skillstack install <user/repo>, skillstack install -f ./skillstack.yaml, ' +
-          'or place a skillstack.yaml / skillstack-lock.json in the current directory.'
+        'No stack specified. Use: skillrank install <user/repo>, skillrank install -f ./skillrank.yaml, ' +
+          'or place a skillrank.yaml / skillrank-lock.json in the current directory.'
       );
       process.exit(1);
       return;
@@ -112,7 +112,7 @@ export async function installCommand(
   if (installed > 0) {
     try {
       writeLock(lock);
-      status.ok(`Wrote skillstack-lock.json (${lock.entries.length} entries).`);
+      status.ok(`Wrote skillrank-lock.json (${lock.entries.length} entries).`);
     } catch (err) {
       status.fail(`Could not write lock file: ${(err as Error).message}`);
     }

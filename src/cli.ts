@@ -11,7 +11,7 @@ import { scoreCommand } from './commands/score.js';
 const program = new Command();
 
 program
-  .name('skillstack')
+  .name('skillrank')
   .description(
     chalk.bold('Curated, tested, shareable agent skill bundles.\n') +
     chalk.dim('Stacks · Bench · Sync — for the open agent skills ecosystem.')
@@ -22,8 +22,8 @@ program
 program
   .command('install [stack]')
   .alias('i')
-  .description('Install a skill stack from GitHub or local skillstack.yaml')
-  .option('-f, --file <path>', 'Path to local skillstack.yaml')
+  .description('Install a skill stack from GitHub or local skillrank.yaml')
+  .option('-f, --file <path>', 'Path to local skillrank.yaml')
   .option('-a, --agent <agents...>', 'Target specific agents (e.g. claude-code cursor)')
   .option('-y, --yes', 'Skip confirmation prompts')
   .action(installCommand);
@@ -51,9 +51,9 @@ program
 // ── create ───────────────────────────────────────────────
 program
   .command('create')
-  .description('Interactively create a new skillstack.yaml')
+  .description('Interactively create a new skillrank.yaml')
   .option('-n, --name <name>', 'Stack name')
-  .option('-o, --output <path>', 'Output path', './skillstack.yaml')
+  .option('-o, --output <path>', 'Output path', './skillrank.yaml')
   .action(createCommand);
 
 // ── publish ──────────────────────────────────────────────

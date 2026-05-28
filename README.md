@@ -1,17 +1,17 @@
 <div align="center">
 
-# ⚡ skillstack
+# ⚡ skillrank
 
 **The quality layer for AI agent skills.**
 
 Test, bundle, and sync skills across every coding agent.
 
-[![npm version](https://img.shields.io/npm/v/skillstack.svg)](https://www.npmjs.com/package/skillstack)
-[![license](https://img.shields.io/npm/l/skillstack.svg)](./LICENSE)
-[![docs](https://img.shields.io/badge/docs-skillstack.dev-7C3AED)](https://docs.skillstack.dev)
+[![npm version](https://img.shields.io/npm/v/skillrank.svg)](https://www.npmjs.com/package/skillrank)
+[![license](https://img.shields.io/npm/l/skillrank.svg)](./LICENSE)
+[![docs](https://img.shields.io/badge/docs-skillrank.dev-7C3AED)](https://docs.skillrank.dev)
 
 ```bash
-npx skillstack bench
+npx skillrank bench
 ```
 
 </div>
@@ -20,7 +20,7 @@ npx skillstack bench
 
 ## What is this?
 
-**skillstack** is a CLI that adds three layers on top of the [open agent skills ecosystem](https://agentskills.io):
+**skillrank** is a CLI that adds three layers on top of the [open agent skills ecosystem](https://agentskills.io):
 
 - 📦 **Stacks** — Curated, shareable bundles of skills. Install with one command.
 - ⚡ **Bench** — Automated quality scoring. Find out which skills actually help and which are broken.
@@ -34,20 +34,20 @@ Thousands of agent skills exist. Three problems:
 
 | Problem | Solution |
 |---|---|
-| Installing 8 skills takes 8 commands | `skillstack install user/stack` |
-| No way to know if a skill actually works | `skillstack bench` |
-| Skills installed in Claude Code but not Cursor | `skillstack sync` |
+| Installing 8 skills takes 8 commands | `skillrank install user/stack` |
+| No way to know if a skill actually works | `skillrank bench` |
+| Skills installed in Claude Code but not Cursor | `skillrank sync` |
 
 ## Install
 
 ```bash
-npm install -g skillstack
+npm install -g skillrank
 ```
 
 Or run without installing:
 
 ```bash
-npx skillstack <command>
+npx skillrank <command>
 ```
 
 ## Quick tour
@@ -55,7 +55,7 @@ npx skillstack <command>
 ### See what you have
 
 ```bash
-skillstack list --agents
+skillrank list --agents
 ```
 
 ```
@@ -69,16 +69,16 @@ Detected agents
 ### Install a curated stack
 
 ```bash
-skillstack install darcy2002/nextjs-starter
+skillrank install darcy2002/nextjs-starter
 ```
 
-Fetches `skillstack.yaml` from GitHub and installs every skill in the bundle.
+Fetches `skillrank.yaml` from GitHub and installs every skill in the bundle.
 
 ### Benchmark your skills
 
 ```bash
 export ANTHROPIC_API_KEY="sk-ant-..."
-skillstack bench
+skillrank bench
 ```
 
 ```
@@ -97,7 +97,7 @@ The delta (`Δ vs raw`) measures how much each skill improves output over the ra
 ### Sync across agents
 
 ```bash
-skillstack sync --dry-run
+skillrank sync --dry-run
 ```
 
 ```
@@ -113,25 +113,25 @@ skillstack sync --dry-run
 ### Build and share your own stack
 
 ```bash
-skillstack create     # interactive wizard
-skillstack publish    # push to GitHub
+skillrank create     # interactive wizard
+skillrank publish    # push to GitHub
 ```
 
-Anyone can then install with `skillstack install your-username/your-stack`.
+Anyone can then install with `skillrank install your-username/your-stack`.
 
 ## All commands
 
 | Command | What it does |
 |---|---|
-| `skillstack install <stack>` | Install a stack from GitHub |
-| `skillstack bench` | Score installed skills 0-100 |
-| `skillstack sync` | Audit and reconcile across agents |
-| `skillstack create` | Interactive stack builder |
-| `skillstack publish` | Push your stack to GitHub |
-| `skillstack list` | Show detected agents + skills |
-| `skillstack score <skill>` | Quick bench of one skill |
+| `skillrank install <stack>` | Install a stack from GitHub |
+| `skillrank bench` | Score installed skills 0-100 |
+| `skillrank sync` | Audit and reconcile across agents |
+| `skillrank create` | Interactive stack builder |
+| `skillrank publish` | Push your stack to GitHub |
+| `skillrank list` | Show detected agents + skills |
+| `skillrank score <skill>` | Quick bench of one skill |
 
-See the [full documentation](https://docs.skillstack.dev) for every flag and option.
+See the [full documentation](https://docs.skillrank.dev) for every flag and option.
 
 ## How bench works
 
@@ -145,11 +145,11 @@ See the [full documentation](https://docs.skillstack.dev) for every flag and opt
 
 Cost: roughly **$0.02 per skill**. Benchmarking 10 skills ≈ $0.20.
 
-See [How Bench Works](https://docs.skillstack.dev/bench/how-it-works) for the full methodology.
+See [How Bench Works](https://docs.skillrank.dev/bench/how-it-works) for the full methodology.
 
 ## Built on `npx skills`
 
-skillstack doesn't reimplement skill installation — we shell out to [`npx skills`](https://www.npmjs.com/package/skills) by Vercel for that. We focus on the three layers nobody else has built: **quality scoring, bundling, and cross-agent sync.**
+skillrank doesn't reimplement skill installation — we shell out to [`npx skills`](https://www.npmjs.com/package/skills) by Vercel for that. We focus on the three layers nobody else has built: **quality scoring, bundling, and cross-agent sync.**
 
 ## Requirements
 
@@ -159,17 +159,17 @@ skillstack doesn't reimplement skill installation — we shell out to [`npx skil
 
 ## Documentation
 
-Full docs at **[docs.skillstack.dev](https://docs.skillstack.dev)**:
+Full docs at **[docs.skillrank.dev](https://docs.skillrank.dev)**:
 
-- [Quickstart](https://docs.skillstack.dev/quickstart)
-- [Command reference](https://docs.skillstack.dev/commands/install)
-- [skillstack.yaml schema](https://docs.skillstack.dev/stacks/yaml-reference)
-- [How bench works](https://docs.skillstack.dev/bench/how-it-works)
-- [CI/CD integration](https://docs.skillstack.dev/guides/ci-integration)
+- [Quickstart](https://docs.skillrank.dev/quickstart)
+- [Command reference](https://docs.skillrank.dev/commands/install)
+- [skillrank.yaml schema](https://docs.skillrank.dev/stacks/yaml-reference)
+- [How bench works](https://docs.skillrank.dev/bench/how-it-works)
+- [CI/CD integration](https://docs.skillrank.dev/guides/ci-integration)
 
 ## Contributing
 
-Found a bug? [Open an issue](https://github.com/darcy2002/SkillStack/issues).
+Found a bug? [Open an issue](https://github.com/darcy2002/SkillRank/issues).
 
 Want to contribute? PRs welcome — see [CONTRIBUTING.md](./CONTRIBUTING.md).
 
