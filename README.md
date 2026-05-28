@@ -65,7 +65,7 @@ skills:
     skill: testing-strategy
 bench:
   tasks_per_skill: 3
-  model: claude-sonnet-4-20250514
+  model: claude-sonnet-4-6
 ```
 
 ## Example bench output
@@ -84,7 +84,7 @@ bench:
     → frontend-design & tailwind-best-practices both trigger on: css, layout, design  (52% overlap)
 
   ──────────────────────────────────────────────────────────
-  Model: claude-sonnet-4-20250514   Tokens: 18,420   Est. cost: $0.11
+  Model: claude-sonnet-4-6   Tokens: 18,420   Est. cost: $0.11
 ```
 
 ## Example sync output

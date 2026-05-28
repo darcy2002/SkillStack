@@ -33,7 +33,7 @@ program
   .command('bench')
   .description('Benchmark installed skills — score quality, find conflicts')
   .option('-s, --stack <path>', 'Bench only skills in a specific stack file')
-  .option('-m, --model <model>', 'Claude model to use', 'claude-sonnet-4-20250514')
+  .option('-m, --model <model>', 'Claude model to use', 'claude-sonnet-4-6')
   .option('-t, --tasks <n>', 'Test prompts per skill', '3')
   .option('--json', 'Output raw JSON instead of table')
   .option('--md', 'Also write bench-report.md')
@@ -74,7 +74,7 @@ program
 program
   .command('score <skill>')
   .description('Quick benchmark a single installed skill')
-  .option('-m, --model <model>', 'Claude model to use', 'claude-sonnet-4-20250514')
+  .option('-m, --model <model>', 'Claude model to use', 'claude-sonnet-4-6')
   .action(scoreCommand);
 
 // ── parse & run ──────────────────────────────────────────

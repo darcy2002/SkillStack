@@ -1,0 +1,10 @@
+name: test-stack
+author: darcy2002
+description: A test stack to verify skillstack works
+agents:
+  - codex
+skills:
+  - source: git@github.com:anthropics/agent-skills.git
+    skill: docx
+  - source: git@github.com:anthropics/agent-skills.git
+    skill: pdf

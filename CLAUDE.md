@@ -61,7 +61,7 @@ Phase 6: 🔴 Tests, README, demo GIF, npm publish
 - Shell out to `npx skills add/remove` — don't reimplement install logic
 - Claude API key required ONLY for bench — install/sync/create/list work without it
 - Stacks are just GitHub repos with a skillstack.yaml — zero infrastructure
-- Bench uses claude-sonnet-4-20250514 by default (fast + cheap, ~$0.02/skill)
+- Bench uses claude-sonnet-4-6 by default (fast + cheap, ~$0.02/skill)
 - bench-report.md is designed to be screenshot-friendly for viral sharing
 
 ## Tech stack

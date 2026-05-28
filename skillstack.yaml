@@ -1,0 +1,10 @@
+name: skillstack
+author: devanshi garg
+version: 0.1.0
+description: test skill
+agents:
+  - codex
+  - opencode
+skills:
+  - source: local
+    skill: api-testing
