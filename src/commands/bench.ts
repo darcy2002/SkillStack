@@ -17,6 +17,7 @@ import {
 interface BenchOptions {
   stack?: string;
   model: string;
+  graderModel: string;
   tasks: string;
   json?: boolean;
   md?: boolean;
@@ -45,6 +46,7 @@ export async function benchCommand(options: BenchOptions): Promise<void> {
   }
 
   const model = options.model;
+  const graderModel = options.graderModel;
   const tasksPerSkill = Math.max(1, parseInt(options.tasks, 10) || 3);
 
   // 1. Scan
@@ -96,7 +98,7 @@ export async function benchCommand(options: BenchOptions): Promise<void> {
     gradeSpin.stop();
     let grades;
     try {
-      grades = await gradeAllResults(runResults, model);
+      grades = await gradeAllResults(runResults, graderModel);
       status.ok(`Graded ${grades.length} result(s).`);
     } catch (err) {
       status.fail(`Grader failed: ${(err as Error).message}`);

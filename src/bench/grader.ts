@@ -67,11 +67,13 @@ function clamp(n: number): number {
  * Grade two outputs for the same prompt. Randomizes A/B assignment to
  * prevent position bias, then maps results back to with/without.
  */
+const DEFAULT_GRADER_MODEL = 'claude-haiku-4-5-20251001';
+
 export async function gradeOutputs(
   prompt: string,
   outputWith: string,
   outputWithout: string,
-  model: string
+  model: string = DEFAULT_GRADER_MODEL
 ): Promise<{ scoreWith: number; scoreWithout: number; reasoning: string }> {
   const client = getClient();
   // Random A/B assignment
@@ -107,7 +109,7 @@ export async function gradeOutputs(
  */
 export async function gradeAllResults(
   results: RunResult[],
-  model: string
+  model: string = DEFAULT_GRADER_MODEL
 ): Promise<GradeResult[]> {
   const out: GradeResult[] = [];
   for (let i = 0; i < results.length; i++) {

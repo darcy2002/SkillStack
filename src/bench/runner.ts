@@ -51,8 +51,10 @@ export async function runDual(
   model: string
 ): Promise<RunResult> {
   const client = getClient();
-  const withSkill = await callModel(client, model, skillBody, prompt);
-  const withoutSkill = await callModel(client, model, undefined, prompt);
+  const [withSkill, withoutSkill] = await Promise.all([
+    callModel(client, model, skillBody, prompt),
+    callModel(client, model, undefined, prompt),
+  ]);
   return { prompt, withSkill, withoutSkill };
 }
 
