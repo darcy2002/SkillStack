@@ -34,7 +34,7 @@ export function spinner(text: string) {
 export function createTable(head: string[], colWidths?: number[]): Table.Table {
   return new Table({
     head: head.map((h) => chalk.bold(h)),
-    colWidths,
+    ...(colWidths ? { colWidths } : {}),
     style: {
       head: [],
       border: ['dim'],

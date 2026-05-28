@@ -1,6 +1,6 @@
 import { writeFileSync } from 'fs';
 import chalk from 'chalk';
-import { createTable, scoreColor, deltaColor, statusBadge, dim, divider } from '../utils/ui.js';
+import { dim, divider } from '../utils/ui.js';
 import type { Conflict } from './conflicts.js';
 
 export type SkillStatus = 'strong' | 'weak' | 'broken';
@@ -28,15 +28,49 @@ export function statusFromScore(score: number): SkillStatus {
   return 'broken';
 }
 
+function col(text: string, width: number, colorFn: (s: string) => string): string {
+  return colorFn(text) + ' '.repeat(Math.max(0, width - text.length));
+}
+
+function scoreCol(score: number, width: number): string {
+  const text = `${score}/100`;
+  const colorFn = score >= 80 ? chalk.green : score >= 50 ? chalk.yellow : chalk.red;
+  return col(text, width, colorFn);
+}
+
+function deltaCol(delta: number, width: number): string {
+  const text = `${delta >= 0 ? '+' : ''}${delta}`;
+  const colorFn = delta >= 20 ? chalk.green : delta >= 5 ? chalk.yellow : delta >= 0 ? chalk.dim : chalk.red;
+  return col(text, width, colorFn);
+}
+
+function statusLabel(score: number): string {
+  if (score >= 80) return chalk.green('✅ Strong');
+  if (score >= 50) return chalk.yellow('⚠️  Weak');
+  return chalk.red('❌ Broken');
+}
+
 /**
  * Render the bench scorecard to the terminal.
  */
 export function renderTerminal(report: BenchReport): void {
-  const table = createTable(['Skill', 'Score', 'Δ vs raw', 'Status']);
+  const sep = '  ' + chalk.dim('─'.repeat(55));
+  console.log();
+  console.log(
+    '  ' +
+      chalk.bold('Skill'.padEnd(22)) +
+      chalk.bold('Score'.padEnd(9)) +
+      chalk.bold('Δ vs raw'.padEnd(11)) +
+      chalk.bold('Status')
+  );
+  console.log(sep);
   for (const s of report.skills) {
-    table.push([s.name, scoreColor(s.score), deltaColor(s.delta), statusBadge(s.score)]);
+    const name = s.name.slice(0, 21).padEnd(22);
+    const score = scoreCol(s.score, 9);
+    const delta = deltaCol(s.delta, 11);
+    console.log(`  ${name}${score}${delta}${statusLabel(s.score)}`);
   }
-  console.log(table.toString());
+  console.log(sep);
 
   if (report.conflicts.length > 0) {
     console.log();
