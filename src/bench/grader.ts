@@ -33,6 +33,7 @@ function getClient(): Anthropic {
 }
 
 function parseGrade(text: string): RawGrade | null {
+  const clean = text.replace(/^```(?:json)?\s*\n?/i, '').replace(/\n?\s*```$/i, '').trim();
   const tryParse = (s: string): RawGrade | null => {
     try {
       const o = JSON.parse(s);
@@ -50,9 +51,9 @@ function parseGrade(text: string): RawGrade | null {
     return null;
   };
 
-  const direct = tryParse(text);
+  const direct = tryParse(clean);
   if (direct) return direct;
-  const match = text.match(/\{[\s\S]*\}/);
+  const match = clean.match(/\{[\s\S]*\}/);
   if (match) return tryParse(match[0]);
   return null;
 }
